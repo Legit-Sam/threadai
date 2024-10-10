@@ -9,12 +9,13 @@ import {
   useAuth,
 } from "@clerk/nextjs";
 import { useState, useEffect } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X, Zap, Sun, Moon } from "lucide-react"; // Import Sun and Moon icons
 
 export function Navbar() {
   const { userId } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true); // State for dark mode
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +24,11 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+    document.body.classList.toggle("dark", !isDarkMode); // Toggle dark class on body
+  };
 
   return (
     <header
@@ -96,6 +102,14 @@ export function Navbar() {
                   }}
                 />
               </SignedIn>
+              {/* Theme Toggle Button */}
+              <button
+                onClick={toggleTheme}
+                className="text-gray-300 hover:text-white transition-colors mt-2 sm:mt-0"
+                aria-label="Toggle dark/light mode"
+              >
+                {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+              </button>
             </div>
           </div>
         </div>

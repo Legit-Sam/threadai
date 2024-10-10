@@ -47,6 +47,7 @@ export default function PricingPage() {
 
   const handleSubscribe = async (priceId: string) => {
     if (!isSignedIn) {
+      alert("Please sign in or register to proceed with a subscription.");
       return;
     }
 

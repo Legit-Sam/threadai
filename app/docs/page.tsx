@@ -31,7 +31,7 @@ const docsSections = [
     title: "API Reference",
     description:
       "Detailed documentation for integrating our AI content generation into your applications.",
-    link: "/docs/api-reference",
+    link: "./app/docs/doc/api-reference",
   },
 ];
 
